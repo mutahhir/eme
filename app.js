@@ -1,7 +1,7 @@
 import App from 'app';
 import BrowserWindow from 'browser-window';
 
-// import 'electron-debug';
+import 'electron-debug';
 
 let mainWindow = null;
 
