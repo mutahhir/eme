@@ -4,7 +4,7 @@
   "description": "A markdown editor using Electron",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron ."
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,14 @@
   },
   "homepage": "https://github.com/mutahhir/eme#readme",
   "devDependencies": {
-    "electron-prebuilt": "^0.34.2"
+    "electron-prebuilt": "^0.34.2",
+    "eslint": "^1.8.0"
+  },
+  "dependencies": {
+    "babel": "^6.0.15",
+    "babel-core": "^6.0.18",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.0.18",
+    "babel-preset-es2015": "^6.0.15",
+    "electron-debug": "^0.3.0"
   }
 }
