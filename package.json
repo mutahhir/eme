@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/mutahhir/eme/issues"
   },
-  "homepage": "https://github.com/mutahhir/eme#readme"
+  "homepage": "https://github.com/mutahhir/eme#readme",
+  "devDependencies": {
+    "electron-prebuilt": "^0.34.2"
+  }
 }
