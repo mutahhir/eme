@@ -23,13 +23,29 @@
   "homepage": "https://github.com/mutahhir/eme#readme",
   "devDependencies": {
     "electron-prebuilt": "^0.34.2",
-    "eslint": "^1.8.0"
+    "eslint": "^1.8.0",
+    "jspm": "^0.16.14"
   },
   "dependencies": {
     "babel": "^6.0.15",
     "babel-core": "^6.0.18",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.0.18",
     "babel-preset-es2015": "^6.0.15",
+    "codemirror": "^5.8.0",
     "electron-debug": "^0.3.0"
+  },
+  "jspm": {
+    "directories": {
+      "baseURL": "browser"
+    },
+    "dependencies": {
+      "codemirror": "npm:codemirror@^5.8.0",
+      "css": "github:systemjs/plugin-css@^0.1.19"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.8.24",
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "core-js": "npm:core-js@^1.1.4"
+    }
   }
 }
