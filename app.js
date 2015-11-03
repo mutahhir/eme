@@ -15,6 +15,8 @@ function createMainWindow () {
     height: 400
   });
 
+  wnd.loadUrl(`file://${__dirname}/browser/index.html`);
+
   wnd.on('closed', onClose);
 
   return wnd;
