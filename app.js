@@ -1,5 +1,6 @@
 import App from 'app';
 import BrowserWindow from 'browser-window';
+import {loadApplicationMenu} from './menu';
 
 import 'electron-debug';
 
@@ -35,5 +36,6 @@ App.on('activate-with-no-open-windows', () => {
 });
 
 App.on('ready', () => {
+  loadApplicationMenu();
   mainWindow = createMainWindow();
 });
