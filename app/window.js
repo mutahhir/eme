@@ -12,7 +12,7 @@ const defaultWindowBounds = {
 
 export default class Window {
   constructor (path) {
-    
+
     Window.add(this);
 
     this.path = path;
@@ -39,6 +39,14 @@ export default class Window {
 
     if (this.path)
       this.browserWindow.setTitle(`${info.productName} - ${path.basename(this.path)}`);
+  }
+
+  focus () {
+    this.browserWindow.focus();
+  }
+
+  toggleDevTools () {
+    this.browserWindow.toggleDevTools();
   }
 
   //
@@ -73,6 +81,17 @@ export default class Window {
 
   static hasWindows () {
     return !!this.windows && this.windows.length > 0;
+  }
+
+  static findWindowFromBrowserWindow (browserWindow) {
+    if (!this.windows || this.windows.length === 0 || !browserWindow)
+      return null;
+
+    return this.windows.find((window) => window.browserWindow.id === browserWindow.id);
+  }
+
+  static focusedWindow () {
+    return this.findWindowFromBrowserWindow(BrowserWindow.getFocusedWindow());
   }
 
 }

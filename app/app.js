@@ -11,18 +11,16 @@ import fs from 'fs';
 import 'electron-debug';
 
 function createNewWindow() {
-  new Window();
+  let window = new Window();
+  window.focus();
 }
 
 function openFiles (paths) {
   if (!paths || paths.length === 0) return;
 
-  let filePath = paths[0];
-  let fileContents = fs.readFileSync(filePath, {encoding: 'utf8'});
-
-  let webContents = mainWindow.webContents;
-
-  webContents.send(events.openfile, fileContents);
+  paths.forEach((path) => {
+    new Window(path);
+  });
 }
 
 App.on('window-all-closed', () => {
@@ -42,6 +40,10 @@ App.on('ready', () => {
   createNewWindow();
 });
 
+notifier.on(events.newfile, () => {
+  createNewWindow();
+})
+
 notifier.on(events.openfile, () => {
   dialog.showOpenDialog(null, {
     title: 'Open Markdown File',
@@ -52,7 +54,7 @@ notifier.on(events.openfile, () => {
 });
 
 notifier.on(events.opendevtools, () => {
-  /*if (mainWindow) {
-    mainWindow.toggleDevTools();
-  }*/
+  const focusedWindow = Window.focusedWindow();
+  if (focusedWindow)
+    focusedWindow.toggleDevTools();
 });

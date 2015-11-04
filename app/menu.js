@@ -3,11 +3,16 @@ import Menu from 'menu';
 import notifier from './notifier';
 import events from '../common/events';
 
+
 let template = [
   {
     label: 'File',
     submenu: [
       {
+        label: 'New',
+        accelerator: 'CmdOrCtrl+N',
+        click: () => notifier.emit(events.newfile)
+      }, {
         label: 'Open...',
         accelerator: 'CmdOrCtrl+O',
         click: () => notifier.emit(events.openfile)
@@ -34,8 +39,8 @@ export function loadApplicationMenu() {
           submenu: []
         }, {
           label: 'Developer Tools',
-          click: () => notifier.emit(events.opendevtools),
-          accelerator: 'Command+Alt+I'
+          accelerator: (() => process.platform === 'darwin' ? 'Command+Alt+I' : 'Ctrl+Shift+I')(),
+          click: () => notifier.emit(events.opendevtools)
         }, {
           type: 'separator'
         }, {
