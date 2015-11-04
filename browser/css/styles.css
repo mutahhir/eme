@@ -1,12 +1,57 @@
+body {
+  background-color: #efefef;
+}
+
 #editor {
   display: none;
 }
 
 .container .CodeMirror {
   height: 100%;
-  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
 
+  font-family: 'Merriweather', 'Georgia', serif;
+  font-size: 1.1rem;
+  line-height: 2.2rem;
+  color: #333;
+  background: none;
+}
+
+.container .CodeMirror .CodeMirror-cursor {
+  border-left: 3px solid #EF06A7;
+}
+
+div.CodeMirror-selected {background: white !important;}
+
+
+.container .CodeMirror .cm-header {
+  color: #666;
+  font-weight: bold;
   font-family: "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 18px;
-  line-height: 24px;
+}
+
+.container .CodeMirror .cm-header-1 {
+  font-size: 2.0rem;
+  line-height: 3.0rem;
+}
+.container .CodeMirror .cm-header-2 {
+  font-size: 1.6rem;
+  line-height: 2.6rem;
+}
+.container .CodeMirror .cm-header-3 {
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+}
+.container .CodeMirror .cm-header-4 {
+  font-size: 1.2rem;
+  line-height: 2.2rem;
+}
+.container .CodeMirror .cm-header-5 {
+  font-size: 1.2rem;
+  line-height: 2.2rem;
+}
+.container .CodeMirror .cm-header-6 {
+  font-size: 1.2rem;
+  line-height: 2.2rem;
 }

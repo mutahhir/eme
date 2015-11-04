@@ -15,7 +15,9 @@ const IPC = System._nodeRequire('ipc');
 const codeMirror =
   CodeMirror.fromTextArea(document.querySelector('#editor'), {
     mode: 'markdown',
-    lineWrapping: true
+    lineWrapping: true,
+    showCursorWhenSelecting: true,
+    autofocus: true
   });
 
 
