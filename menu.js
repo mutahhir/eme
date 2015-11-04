@@ -1,5 +1,7 @@
 import App from 'app';
 import Menu from 'menu';
+import notifier from './notifier';
+import events from './events';
 
 let template = [
   {
@@ -8,7 +10,7 @@ let template = [
       {
         label: 'Open...',
         accelerator: 'CmdOrCtrl+O',
-        role: 'open'
+        click: () => notifier.emit(events.openfile)
       }
     ]
   }
@@ -30,6 +32,10 @@ export function loadApplicationMenu() {
           label: 'Services',
           role: 'services',
           submenu: []
+        }, {
+          label: 'Developer Tools',
+          click: () => notifier.emit(events.opendevtools),
+          accelerator: 'Command+Alt+I'
         }, {
           type: 'separator'
         }, {
