@@ -2,8 +2,6 @@ import 'codemirror/mode/markdown/markdown';
 import 'codemirror/lib/codemirror.css!';
 import CodeMirror from 'codemirror';
 
-import '../css/styles.css!';
-
 import events from '../../common/events';
 
 // This is ugly, but we need to bypass JSPM to get to Node only packages
@@ -26,3 +24,5 @@ let content = IPC.sendSync(events.getFileContents);
 if (content) {
   codeMirror.setValue(content);
 }
+
+codeMirror.focus();
