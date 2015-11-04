@@ -4,6 +4,7 @@ import notifier from './notifier';
 import fs from 'fs';
 import path from 'path';
 import events from '../common/events';
+import IPC from 'ipc';
 
 const defaultWindowBounds = {
   width: 1024,
@@ -14,6 +15,7 @@ export default class Window {
   constructor (path) {
 
     Window.add(this);
+    Window.handleIPCEvents();
 
     this.path = path;
     this.loaded = false;
@@ -31,7 +33,6 @@ export default class Window {
 
   onWindowLoaded () {
     this.loaded = true;
-    this.browserWindow.send(events.openfile, this.content);
   }
 
   setTitle () {
@@ -92,6 +93,19 @@ export default class Window {
 
   static focusedWindow () {
     return this.findWindowFromBrowserWindow(BrowserWindow.getFocusedWindow());
+  }
+
+  static handleIPCEvents() {
+    if (this.__eventsHandlerActive)
+      return;
+
+    this.__eventsHandlerActive = true;
+    
+    IPC.on(events.getFileContents, (event) => {
+      const sender = event.sender.getOwnerBrowserWindow();
+      const window = this.findWindowFromBrowserWindow(sender);
+      event.returnValue = window.content;
+    });
   }
 
 }

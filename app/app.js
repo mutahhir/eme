@@ -6,8 +6,6 @@ import {loadApplicationMenu} from './menu';
 import notifier from './notifier';
 import events from '../common/events';
 
-import fs from 'fs';
-
 import 'electron-debug';
 
 function createNewWindow() {
