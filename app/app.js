@@ -1,5 +1,5 @@
 import App from 'app';
-import BrowserWindow from 'browser-window';
+import Window from './window';
 import dialog from 'dialog';
 
 import {loadApplicationMenu} from './menu';
@@ -10,23 +10,8 @@ import fs from 'fs';
 
 import 'electron-debug';
 
-let mainWindow = null;
-
-function onClose() {
-  mainWindow = null;
-}
-
-function createMainWindow () {
-  const wnd = new BrowserWindow({
-    width: 600,
-    height: 400
-  });
-
-  wnd.loadUrl(`file://${__dirname}/../browser/index.html`);
-
-  wnd.on('closed', onClose);
-
-  return wnd;
+function createNewWindow() {
+  new Window();
 }
 
 function openFiles (paths) {
@@ -47,14 +32,14 @@ App.on('window-all-closed', () => {
 });
 
 App.on('activate-with-no-open-windows', () => {
-  if (!mainWindow) {
-    mainWindow = createMainWindow();
+  if (!Window.hasWindows()) {
+    createNewWindow();
   }
 });
 
 App.on('ready', () => {
   loadApplicationMenu();
-  mainWindow = createMainWindow();
+  createNewWindow();
 });
 
 notifier.on(events.openfile, () => {
@@ -67,7 +52,7 @@ notifier.on(events.openfile, () => {
 });
 
 notifier.on(events.opendevtools, () => {
-  if (mainWindow) {
+  /*if (mainWindow) {
     mainWindow.toggleDevTools();
-  }
-})
+  }*/
+});

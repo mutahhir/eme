@@ -1,4 +1,5 @@
 export default {
   openfile: 'openfile',
-  opendevtools: 'opendevtools'
+  opendevtools: 'opendevtools',
+  windowloaded: 'windowloaded'
 };

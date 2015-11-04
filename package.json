@@ -1,5 +1,6 @@
 {
   "name": "eme",
+  "productName": "eme",
   "version": "0.1.0",
   "description": "A markdown editor using Electron",
   "main": "index.js",
