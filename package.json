@@ -40,7 +40,8 @@
     },
     "dependencies": {
       "codemirror": "npm:codemirror@^5.8.0",
-      "css": "github:systemjs/plugin-css@^0.1.19"
+      "css": "github:systemjs/plugin-css@^0.1.19",
+      "electron-prebuilt": "npm:electron-prebuilt@^0.34.2"
     },
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",
