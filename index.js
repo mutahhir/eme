@@ -3,4 +3,4 @@ require('babel-core/register')({
   ignore: false
 });
 
-require('./app.js');
+require('./app/app.js');

@@ -4,10 +4,9 @@ import dialog from 'dialog';
 
 import {loadApplicationMenu} from './menu';
 import notifier from './notifier';
-import events from './events';
+import events from '../common/events';
 
 import fs from 'fs';
-
 
 import 'electron-debug';
 
@@ -23,7 +22,7 @@ function createMainWindow () {
     height: 400
   });
 
-  wnd.loadUrl(`file://${__dirname}/browser/index.html`);
+  wnd.loadUrl(`file://${__dirname}/../browser/index.html`);
 
   wnd.on('closed', onClose);
 

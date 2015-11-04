@@ -1,7 +1,7 @@
 import App from 'app';
 import Menu from 'menu';
 import notifier from './notifier';
-import events from './events';
+import events from '../common/events';
 
 let template = [
   {
