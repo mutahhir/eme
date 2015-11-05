@@ -51,6 +51,12 @@ notifier.on(events.openfile, () => {
   }, openFiles);
 });
 
+notifier.on(events.savefile, () => {
+  const focusedWindow = Window.focusedWindow();
+  if (focusedWindow)
+    focusedWindow.saveFile();
+});
+
 notifier.on(events.toggleDeveloperTools, () => {
   const focusedWindow = Window.focusedWindow();
   if (focusedWindow)

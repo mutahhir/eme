@@ -1,10 +1,12 @@
 import app from 'app';
+import dialog from 'dialog';
 import BrowserWindow from 'browser-window';
 import notifier from './notifier';
 import fs from 'fs';
 import path from 'path';
 import events from '../common/events';
 import IPC from 'ipc';
+import q from 'q';
 
 const defaultWindowBounds = {
   width: 1024,
@@ -29,6 +31,11 @@ export default class Window {
     this.browserWindow.webContents.on('did-finish-load', this.onWindowLoaded.bind(this));
     this.browserWindow.loadUrl(`file://${__dirname}/../browser/index.html`);
     this.setTitle();
+
+    if (this.path) {
+      this.browserWindow.setRepresentedFilename(this.path);
+      this.browserWindow.setDocumentEdited(false);
+    }
   }
 
   onWindowLoaded () {
@@ -40,6 +47,53 @@ export default class Window {
 
     if (this.path)
       this.browserWindow.setTitle(`${info.productName} - ${path.basename(this.path)}`);
+  }
+
+  setContent (content) {
+    this.content = content;
+    this.browserWindow.setDocumentEdited(true);
+  }
+
+  setPath (path) {
+    if (path !== this.path && !!path) {
+      this.path = path;
+      this.setTitle();
+      this.browserWindow.setRepresentedFilename(this.path);
+      this.browserWindow.setDocumentEdited(false);
+    }
+  }
+
+  saveFile (path) {
+    const save = (filePath) => {
+      return q.fcall(fs.writeFile, filePath, this.content, {encoding: 'utf8'})
+        .then((err) => {
+          if (err) {
+            throw err;
+          }
+
+          this.browserWindow.setDocumentEdited(false);
+        })
+        .catch((err) => {
+          throw err;
+        });
+    };
+
+    if (path) {
+      this.setPath(path);
+    }
+
+    if (!this.path) {
+      // need to show save dialog
+      return q.fcall(dialog.showSaveDialog, this.browserWindow, {title: 'Save File'})
+        .then((filePath) => {
+          if (!filePath) return;
+
+          this.setPath(filePath);
+          return save(filePath);
+        });
+    } else {
+      return save(this.path);
+    }
   }
 
   focus () {
@@ -109,6 +163,13 @@ export default class Window {
       const sender = event.sender.getOwnerBrowserWindow();
       const window = this.findWindowFromBrowserWindow(sender);
       event.returnValue = window.content;
+    });
+
+    IPC.on(events.fileContentsChanged, (event, contents) => {
+      const sender = event.sender.getOwnerBrowserWindow();
+      const window = this.findWindowFromBrowserWindow(sender);
+
+      window.setContent(contents);
     });
   }
 

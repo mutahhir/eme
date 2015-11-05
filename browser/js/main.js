@@ -20,6 +20,10 @@ const codeMirror =
     autofocus: true
   });
 
+codeMirror.on('change', () => {
+  IPC.send(events.fileContentsChanged, codeMirror.getValue());
+});
+
 
 let content = IPC.sendSync(events.getFileContents);
 

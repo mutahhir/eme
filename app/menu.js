@@ -16,6 +16,10 @@ let template = [
         label: 'Open...',
         accelerator: 'CmdOrCtrl+O',
         click: () => notifier.emit(events.openfile)
+      }, {
+        label: 'Save',
+        accelerator: 'CmdOrCtrl+S',
+        click: () => notifier.emit(events.savefile)
       }
     ]
   }, {

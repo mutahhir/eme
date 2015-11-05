@@ -1,6 +1,7 @@
 export default {
   newfile: 'newfile',
   openfile: 'openfile',
+  savefile: 'savefile',
   toggleDeveloperTools: 'toggleDeveloperTools',
   windowloaded: 'windowloaded',
 
@@ -8,6 +9,8 @@ export default {
   toggleFullscreen: 'toggleFullscreen',
 
 
-  getFileContents: 'getFileContents'
+  // IPC
+  getFileContents: 'getFileContents',
+  fileContentsChanged: 'fileContentsChanged'
 
 };
