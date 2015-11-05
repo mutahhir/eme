@@ -28,3 +28,10 @@ if (content) {
 }
 
 codeMirror.focus();
+
+document.body.addEventListener('click', () => {
+  setTimeout(() => {
+    if (!codeMirror.hasFocus())
+      codeMirror.focus();
+  });
+});
