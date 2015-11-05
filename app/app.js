@@ -40,7 +40,7 @@ App.on('ready', () => {
 
 notifier.on(events.newfile, () => {
   createNewWindow();
-})
+});
 
 notifier.on(events.openfile, () => {
   dialog.showOpenDialog(null, {
@@ -51,8 +51,20 @@ notifier.on(events.openfile, () => {
   }, openFiles);
 });
 
-notifier.on(events.opendevtools, () => {
+notifier.on(events.toggleDeveloperTools, () => {
   const focusedWindow = Window.focusedWindow();
   if (focusedWindow)
     focusedWindow.toggleDevTools();
+});
+
+notifier.on(events.reload, () => {
+  const focusedWindow = Window.focusedWindow();
+  if (focusedWindow)
+    focusedWindow.browserWindow.reload();
+});
+
+notifier.on(events.toggleFullscreen, () => {
+  const focusedWindow = Window.focusedWindow();
+  if (focusedWindow)
+    focusedWindow.toggleFullscreen();
 });

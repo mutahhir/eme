@@ -50,6 +50,10 @@ export default class Window {
     this.browserWindow.toggleDevTools();
   }
 
+  toggleFullscreen () {
+    this.browserWindow.setFullScreen(!this.browserWindow.isFullScreen());
+  }
+
   //
   // Static methods
   //
@@ -100,7 +104,7 @@ export default class Window {
       return;
 
     this.__eventsHandlerActive = true;
-    
+
     IPC.on(events.getFileContents, (event) => {
       const sender = event.sender.getOwnerBrowserWindow();
       const window = this.findWindowFromBrowserWindow(sender);

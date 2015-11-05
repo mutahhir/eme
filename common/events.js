@@ -1,9 +1,13 @@
 export default {
   newfile: 'newfile',
   openfile: 'openfile',
-  opendevtools: 'opendevtools',
+  toggleDeveloperTools: 'toggleDeveloperTools',
   windowloaded: 'windowloaded',
+
+  reload: 'reload',
+  toggleFullscreen: 'toggleFullscreen',
 
 
   getFileContents: 'getFileContents'
+
 };
